@@ -1,6 +1,9 @@
 # Merge CSV Columns
 
-Script to merge two CSV files. Records in the secondary CSV file will be merged into the corresponding records in the primary CSV file. Both files must have a common field in their first column; this field is used as the key to combine the data. This field must be the first column in both files.
+Script to merge the columns contained in two CSV files. Records in the secondary CSV file will be merged into the corresponding records in the primary CSV file. Requirements in the CSV files:
+
+* Both files must have a common field in their first column; this field is used as the key to combine the data.
+* Both files must have a header row, but the only header they must share is the common field. Headers from both files are combined into one the header rown in the output file.
 
 For example, if your primary CSV file is:
 
@@ -67,11 +70,11 @@ File containing merged records is at /home/mark/hacking/merge_csv_columns/myoutp
 
 ## Things to note
 
-* If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record (as illustrated in row 3 of the sample output CSV shown above).
+* If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record (as illustrated in row 3 of the sample output CSV shown above - the Date and Number of pages fields are empty).
 * You can specify a delimiter with '-d'. The delimiter applies to the primary, secondary, and output files. The default is ','. Others include:
   * to use a tab, specify `-d t`
   * to use a pipe, specify `-d \|`
 
 ## License
 
-Public Domain.
+Public Domain

@@ -10,7 +10,7 @@ class delimiterTest extends PHPUnit_Framework_TestCase
         $this->path_to_output_file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "testoutput.sv";
     }
 
-    public function testBasicMerge()
+    public function testDefaultMerge()
     {
         exec('php merge_csv_columns.php ' .
           '-p ' . $this->asset_base_dir .

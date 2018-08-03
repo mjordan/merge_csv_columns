@@ -92,8 +92,8 @@ foreach ($secondary_records as $secondary_record) {
 }
 
 /**
- * Read the primary CSV file into memory and prepare it and merge in
- * the secondary CSV data.
+ * Read the primary CSV file into memory and merge in the
+ * secondary CSV data.
  */
 $primary_headers = $primary_reader->fetchOne();
 $primary_records = $primary_reader->fetch();

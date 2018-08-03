@@ -71,9 +71,15 @@ File containing merged records is at /home/mark/hacking/merge_csv_columns/myoutp
 ## Things to note
 
 * If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record (as illustrated in row 3 of the sample output CSV shown above - the Date and Number of pages fields are empty).
-* You can specify a delimiter with '-d'. The delimiter applies to the primary, secondary, and output files. The default is ','. Others include:
+* You can specify a delimiter with '-d'. The delimiter applies to the primary, secondary, and output files. The default is ','. Any single character is allowed but two that are represented in specific ways are:
   * to use a tab, specify `-d t`
   * to use a pipe, specify `-d \|`
+
+## Feedback and contributing
+
+This utility satisfied a need that arose during a particular project, so its functionality is fairly narrow. But, if you have a use case or suggestion, please open an issue. When reporting an issue, please provide sample data so that I will be able to replicate the problem.
+
+If you want to write PHPUnit tests for any changes you propose, see the examples in the `tests` directory. Run the tests by exectuting `vendor/bin/phpunit tests` from the same directory the `merge_csv_columns.php` script is in.
 
 ## License
 

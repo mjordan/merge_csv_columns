@@ -42,6 +42,18 @@ For example,
 
 `php merge_csv_columns.php primary.csv secondary.csv ./myoutput.csv`
 
+Running this command will result in the following:
+
+```
+Processing primary CSV record with ID 1...found matching secondary record.
+Processing primary CSV record with ID 2...found matching secondary record.
+Processing primary CSV record with ID 3...did not find matching secondary record, adding placeholders.
+Processing primary CSV record with ID 4...found matching secondary record.
+Merged 3 primary and secondary records.
+Detected 1 primary records that did not have matching secondary records.
+File containing merged records is at /home/mark/hacking/merge_csv_columns/myoutput.csv.
+```
+
 ## Things to note
 
 * If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record.

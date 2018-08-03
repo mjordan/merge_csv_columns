@@ -4,9 +4,14 @@
 /**
  * Script to merge two CSV files.
  *
- * Usage php merge_csv_columns.php path/to/primary_file.csv path/to/secondary_file.csv path/to/output_file.csv
+ * Usage php merge_csv_columns.php -p path/to/primary_file.csv -s path/to/secondary_file.csv -o path/to/output_file.csv
  *
- *  Example: php merge_csv_columns.php primary.csv secondary.csv ./myoutput.csv
+ *  Example: php merge_csv_columns.php -p primary.csv -s secondary.csv -o ./myoutput.csv
+ *
+ * You can also specify a delimiter with '-d'. The default is ',', and if you want to use a tab, specify 't':
+ *
+ *  Example: php merge_csv_columns.php -p primary.tsv -s secondary.tsv -o ./myoutput.tsv -d t
+ *
  *
  * where records in the secondary_file.csv will be merged into the corresponding records
  * in primary_file.csv. Both files must have a common field in their first column; this field
@@ -17,12 +22,52 @@ use League\Csv\Reader;
 use League\Csv\Writer;
 require 'vendor/autoload.php';
 
-$primary_reader = Reader::createFromPath(trim($argv[1]), 'r');
-$secondary_reader = Reader::createFromPath(trim($argv[2]), 'r');
-$output_file = trim($argv[3]);
+$cmd = new Commando\Command();
+
+$cmd->option('p')
+    ->aka('primary')
+    ->require(true)
+    ->describedAs('Ablsolute or relative path to the primary CSV file.')
+    ->must(function ($primary_path) {
+        if (file_exists($primary_path)) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+$cmd->option('s')
+    ->aka('secondary')
+    ->require(true)
+    ->describedAs('Ablsolute or relative path to the secondary CSV file.')
+    ->must(function ($secondary_path) {
+        if (file_exists($secondary_path)) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+$cmd->option('o')
+    ->aka('output')
+    ->require(true)
+    ->describedAs('Ablsolute or relative path to the output CSV file.');
+$cmd->option('d')
+    ->aka('delimiter')
+    ->default(',')
+    ->describedAs('Field delimiter. Defaults to a comma (,).');
+
+$delimiter = ($cmd['delimiter'] == 't') ? "	" : $cmd['delimiter'];
+
+var_dump($delimiter);
+
+$primary_reader = Reader::createFromPath($cmd['primary'], 'r');
+$primary_reader->setDelimiter($delimiter);
+$secondary_reader = Reader::createFromPath($cmd['secondary'], 'r');
+$secondary_reader->setDelimiter($delimiter);
+$output_file = $cmd['output'];
 
 // Prepare the combined output file.
 $writer = Writer::createFromPath(new SplFileObject($output_file, 'a+'), 'w');
+$writer->setDelimiter($delimiter);
 
 /**
  * Read the secondary CSV file into memory and prepare it for merging

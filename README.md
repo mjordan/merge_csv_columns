@@ -47,11 +47,11 @@ The `ID` column links the data in the two files.
 
 ## Usage
 
-`php merge_csv_columns.php path/to/primary_file.csv path/to/secondary_file.csv path/to/output_file.csv`
+`php merge_csv_columns.php -p path/to/primary_file.csv -s path/to/secondary_file.csv -o path/to/output_file.csv`
 
 For example,
 
-`php merge_csv_columns.php primary.csv secondary.csv ./myoutput.csv`
+`php merge_csv_columns.php -p primary.csv -s secondary.csv -o ./myoutput.csv`
 
 Running this command will result in the following:
 
@@ -68,6 +68,9 @@ File containing merged records is at /home/mark/hacking/merge_csv_columns/myoutp
 ## Things to note
 
 * If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record (as illustrated in row 3 of the sample output CSV shown above).
+* You can specify a delimiter with '-d'. The delimiter applies to the primary, secondary, and output files. The default is ','. Others include:
+  * to use a tab, specify `-d t`
+  * to use a pipe, specify `-d \|`
 
 ## License
 

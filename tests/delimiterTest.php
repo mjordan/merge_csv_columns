@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 use League\Csv\Reader;
 
-class mergeCsvColumnsTest extends PHPUnit_Framework_TestCase
+class delimiterTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {

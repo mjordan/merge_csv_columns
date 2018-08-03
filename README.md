@@ -34,6 +34,17 @@ ID,Title,Author,Publisher,Date,"Number of pages"
 
 The `ID` column links the data in the two files.
 
+## Requirements
+
+* PHP 5.6.0 or higher
+* [composer](https://getcomposer.org/)
+
+## Installation
+
+1. `git https://github.com/mjordan/merge_csv_columns.git`
+1. `cd merge_csv_columns`
+1. `php composer.phar install` (or equivalent on your system, e.g., `./composer install`)
+
 ## Usage
 
 `php merge_csv_columns.php path/to/primary_file.csv path/to/secondary_file.csv path/to/output_file.csv`
@@ -56,7 +67,7 @@ File containing merged records is at /home/mark/hacking/merge_csv_columns/myoutp
 
 ## Things to note
 
-* If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record.
+* If there is no record in the secondary that matches a record in the primary file, the output will contain empty cells in the primary record (as illustrated in row 3 of the sample output CSV shown above).
 
 ## License
 
